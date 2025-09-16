@@ -26,10 +26,10 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
-    'swipebooksmoviesappbackend.onrender.com',
+    'swipebooksbackend.onrender.com',
 ]
 CORS_ALLOWED_ORIGINS = [
-    "https://swipebooksmoviesappbackend.onrender.com",
+    "https://swipebooksbackend.onrender.com",
 ]
 
 # Application definition
