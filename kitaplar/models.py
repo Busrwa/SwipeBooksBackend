@@ -1,11 +1,13 @@
 from django.db import models
 
+
 class Author(models.Model):
     # Yazar ismi
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+
 
 class Book(models.Model):
     isbn = models.CharField(max_length=20, unique=True)
@@ -16,9 +18,9 @@ class Book(models.Model):
     description = models.TextField(blank=True)
     publish_date = models.DateField(null=True, blank=True)
 
-
     # Kapak resmi URL ya da dosya
-    cover_image_url = models.URLField(blank=True)
+    cover_image_url = models.URLField(blank=True, max_length=500)
+
     # Eğer medya dosyası kullanmak istersen:
     # cover_image = models.ImageField(upload_to='covers/', blank=True)
 
