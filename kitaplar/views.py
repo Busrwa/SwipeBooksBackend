@@ -56,7 +56,7 @@ class BookListCreateView(APIView):
     permission_classes = [IsTeamLeadOrAdmin]
 
     def get(self, request):
-        books = Book.objects.select_related('author').all()
+        books = Book.objects.select_related('author').all().order_by('id')
         paginator = PageNumberPagination()
         paginator.page_size = 20
         result_page = paginator.paginate_queryset(books, request)
