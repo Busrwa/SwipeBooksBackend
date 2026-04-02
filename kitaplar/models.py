@@ -10,7 +10,7 @@ class Author(models.Model):
 
 
 class Book(models.Model):
-    isbn = models.CharField(max_length=20, unique=True)
+    isbn = models.CharField(max_length=20, unique=True, default='')
     title = models.CharField(max_length=255)
     # Yazar ilişkisi (bir kitap bir yazara ait)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
