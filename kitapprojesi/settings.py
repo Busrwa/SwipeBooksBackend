@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'accounts',  # Özel kullanıcı modeli ve kimlik doğrulama işlemleri için projeye özgü bir uygulama.
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
@@ -139,11 +141,9 @@ MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 KNOX_TOKEN_TTL = None  # Tokenların geçerlilik süresi
 KNOX_TOKEN_LIMIT_PER_USER = 10  # Kullanıcı başına maksimum token sayısı (isteğe bağlı)
 KNOX_REVOKE_TOKENS_ON_LOGOUT = True  # Kullanıcı çıkış yaparsa tokenları geçersiz kılar
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -156,5 +156,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
-#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
