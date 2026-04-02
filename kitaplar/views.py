@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from rest_framework.pagination import PageNumberPagination
 
 from .models import Author, Book
 from .serializers import AuthorSerializer, BookSerializer
@@ -18,9 +19,7 @@ class AuthorListCreateView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        # POST sadece admin/team_lead
         self.check_permissions(request)
-
         serializer = AuthorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -38,7 +37,6 @@ class AuthorDetailView(APIView):
 
     def put(self, request, pk):
         self.check_permissions(request)
-
         author = get_object_or_404(Author, pk=pk)
         serializer = AuthorSerializer(author, data=request.data)
         if serializer.is_valid():
@@ -48,7 +46,6 @@ class AuthorDetailView(APIView):
 
     def delete(self, request, pk):
         self.check_permissions(request)
-
         author = get_object_or_404(Author, pk=pk)
         author.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -59,13 +56,15 @@ class BookListCreateView(APIView):
     permission_classes = [IsTeamLeadOrAdmin]
 
     def get(self, request):
-        books = Book.objects.all()
-        serializer = BookSerializer(books, many=True)
-        return Response(serializer.data)
+        books = Book.objects.select_related('author').all()
+        paginator = PageNumberPagination()
+        paginator.page_size = 20
+        result_page = paginator.paginate_queryset(books, request)
+        serializer = BookSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     def post(self, request):
         self.check_permissions(request)
-
         serializer = BookSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -83,7 +82,6 @@ class BookDetailView(APIView):
 
     def put(self, request, pk):
         self.check_permissions(request)
-
         book = get_object_or_404(Book, pk=pk)
         serializer = BookSerializer(book, data=request.data)
         if serializer.is_valid():
@@ -93,7 +91,6 @@ class BookDetailView(APIView):
 
     def delete(self, request, pk):
         self.check_permissions(request)
-
         book = get_object_or_404(Book, pk=pk)
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
