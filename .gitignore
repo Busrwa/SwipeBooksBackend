@@ -5,6 +5,8 @@ __pycache__/
 *.pyd
 *.pyc
 
+db.sqlite3
+
 # Django
 db.sqlite3
 /media/
