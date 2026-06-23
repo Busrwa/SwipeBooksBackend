@@ -8,32 +8,44 @@ __pycache__/
 db.sqlite3
 
 # Django
+
 db.sqlite3
-/media/
+media/
 staticfiles/
 *.log
 local_settings.py
 
 # Environment
+
 .env
 .env.*
+!.env.example
+
+# Data files
+
 kitaplar.csv
-# IDE ve editörler
+
+# IDE
+
 .vscode/
 .idea/
 
-# OS dosyaları
+# OS
+
 .DS_Store
 Thumbs.db
 
 # Test / Coverage
+
 htmlcov/
 .tox/
 .coverage
 *.cover
 *.py,cover
 
-# Virtual Environment
+# Virtual environments
+
 venv/
 ENV/
 env/
+.venv/

@@ -1,14 +1,14 @@
 # 📚 SwipeBooks – Backend API
 
-SwipeBooks Backend is a Django REST Framework API built for the SwipeBooks mobile application, a book discovery platform with swipe-based browsing, search, filtering, and user authentication features.
+SwipeBooks Backend is a Django REST Framework API built for the SwipeBooks mobile application, a book discovery platform with swipe-based browsing, search, filtering, and author-based exploration.
 
-The backend provides structured book and author data, authentication endpoints, pagination, filtering, and database persistence through Supabase PostgreSQL. It is designed to support a React Native mobile frontend and is deployable on Render.
+The backend provides structured book and author data, authentication endpoints, pagination, filtering, ordering, and database persistence through Supabase PostgreSQL. It is designed to support a React Native mobile frontend and is deployable on Render.
 
 ## 🚀 Project Overview
 
 SwipeBooks helps users discover books through a mobile-first experience. This backend powers the application by serving book records, author information, search results, and authenticated user operations.
 
-Book data can be imported from a CSV dataset through Django management workflows and stored persistently in PostgreSQL.
+Book data can be imported from a CSV dataset and stored persistently in PostgreSQL.
 
 ## ⚙️ Tech Stack
 
@@ -61,8 +61,8 @@ Create a `.env` file locally based on `.env.example`:
 SECRET_KEY=your-django-secret-key
 DEBUG=False
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME
-ALLOWED_HOSTS=localhost,127.0.0.1,swipebooks-backend.onrender.com
-CORS_ALLOWED_ORIGINS=http://localhost:19006,http://localhost:8081
+ALLOWED_HOSTS=swipebooksbackend.onrender.com,localhost,127.0.0.1
+CORS_ALLOWED_ORIGINS=https://swipebooksbackend.onrender.com,http://localhost:19006,http://localhost:8081
 ```
 
 ## 🛠️ Getting Started

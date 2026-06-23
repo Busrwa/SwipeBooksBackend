@@ -2,17 +2,19 @@ services:
   - type: web
     name: swipebooks-backend
     env: python
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
-    startCommand: "gunicorn kitapprojesi.wsgi:application"
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: gunicorn kitapprojesi.wsgi:application
     autoDeploy: true
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: kitapprojesi.settings
       - key: PYTHON_VERSION
-        value: 3.10
+        value: "3.10"
       - key: SECRET_KEY
-        value: your-secret-key
+        sync: false
+      - key: DATABASE_URL
+        sync: false
       - key: DEBUG
-        value: False
+        value: "False"
       - key: ALLOWED_HOSTS
-        value: swipebooks-backend.onrender.com
+        value: swipebooksbackend.onrender.com
